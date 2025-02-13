@@ -42,15 +42,20 @@ gltfLoader.setDRACOLoader(dracoLoader);
 // });
 
 let mixer;
-gltfLoader.load('/models/Fox/glTF/Fox.gltf', (gltf) => {
-	mixer = new THREE.AnimationMixer(gltf.scene);
-	// 获取动画的动画片段动作
-	const action = mixer.clipAction(gltf.animations[0]);
-	// 播放
-	action.play();
+// gltfLoader.load('/models/Fox/glTF/Fox.gltf', (gltf) => {
+// 	mixer = new THREE.AnimationMixer(gltf.scene);
+// 	// 获取动画的动画片段动作
+// 	const action = mixer.clipAction(gltf.animations[0]);
+// 	// 播放
+// 	action.play();
 
-	gltf.scene.scale.set(0.025, 0.025, 0.025);
+// 	gltf.scene.scale.set(0.025, 0.025, 0.025);
+// 	scene.add(gltf.scene);
+// });
+
+gltfLoader.load('/models/Ak12/ak12.gltf', (gltf) => {
 	scene.add(gltf.scene);
+	console.log(gltf);
 });
 
 /**
@@ -64,6 +69,7 @@ const floor = new THREE.Mesh(
 		roughness: 0.5,
 	}),
 );
+floor.position.y = -3;
 floor.receiveShadow = true;
 floor.rotation.x = -Math.PI * 0.5;
 scene.add(floor);
@@ -74,7 +80,7 @@ scene.add(floor);
 const ambientLight = new THREE.AmbientLight(0xffffff, 2.4);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.8);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
 directionalLight.castShadow = true;
 directionalLight.shadow.mapSize.set(1024, 1024);
 directionalLight.shadow.camera.far = 15;
@@ -82,7 +88,7 @@ directionalLight.shadow.camera.left = -7;
 directionalLight.shadow.camera.top = 7;
 directionalLight.shadow.camera.right = 7;
 directionalLight.shadow.camera.bottom = -7;
-directionalLight.position.set(5, 5, 5);
+directionalLight.position.set(0, 5, 0);
 scene.add(directionalLight);
 
 /**
